@@ -6,13 +6,6 @@ import java.nio.file.*;
 import java.nio.file.attribute.BasicFileAttributes;
 
 public class RemoveFolder extends SimpleFileVisitor<Path> {
-    private final Path sourceDir;
-    private final Path targetDir;
-
-    public RemoveFolder(Path sourceDir, Path targetDir) {
-        this.sourceDir = sourceDir;
-        this.targetDir = targetDir;
-    }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attributes) throws IOException {
@@ -26,10 +19,18 @@ public class RemoveFolder extends SimpleFileVisitor<Path> {
         return FileVisitResult.CONTINUE;
     }
 
-    public static void main(String[] args) throws IOException {
-        Path sourceDir = Paths.get(args[0]);
-        Path targetDir = Paths.get(args[1]);
-
-        Files.walkFileTree(sourceDir, new RemoveFolder(sourceDir, targetDir));
+    public static void remove(String path) throws IOException {
+        Path sourceDir = Paths.get(path);
+        Files.walkFileTree(sourceDir, new RemoveFolder());
     }
+
+    public static void remove(Path path) throws IOException {
+        Files.walkFileTree(path, new RemoveFolder());
+    }
+
+    public static void remove(File file) throws IOException {
+        Path path = file.toPath();
+        Files.walkFileTree(path, new RemoveFolder());
+    }
+
 }

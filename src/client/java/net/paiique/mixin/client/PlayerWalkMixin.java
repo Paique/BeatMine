@@ -1,6 +1,7 @@
 package net.paiique.mixin.client;
 
 
+import net.minecraft.client.option.GameOptions;
 import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.network.packet.c2s.play.PlayerInputC2SPacket;
@@ -12,11 +13,16 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerAbilities.class)
+/**
+ * This mixin is used to remove the player's ability to walk.
+ * @Author Paique
+ */
+
+@Mixin(GameOptions.class)
 public class PlayerWalkMixin {
 
-    @Inject(at = @At("HEAD"), method = "getWalkSpeed", cancellable = true)
-    public void getWalkSpeed(CallbackInfoReturnable<Float> cir) {
-        cir.setReturnValue(0.0F);
+    @Inject(at = @At(value = "INVOKE", target = ""), method = "getClampedViewDistance", cancellable = true)
+    public void getClampedViewDistance(CallbackInfoReturnable<Integer> cir) {
+        cir.setReturnValue(20);
     }
 }
