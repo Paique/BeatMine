@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "paique",
+	"version": "${version}",
+	"accessWidener" : "beatcraft.accesswidener",
+	"name": "paique",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://beatcraft.paiique.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/beatcraft/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.paiique.BeatCraft"
+		],
+		"client": [
+			"net.paiique.BeatCraftClient"
+		]
+	},
+	"mixins": [
+      "beatcraft.mixins.json",
+		{
+			"config": "beatcraft.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.6",
+		"minecraft": "~1.20.4",
+		"java": ">=17",
+		"fabric-api": "*",
+		"offhandcombat" : "~2.0.0",
+		"worldedit" : ">=7.2.18-SNAPSHOT+1259-13d4d6"
+	},
+	"suggests": {}
+}

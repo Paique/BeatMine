@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "net.paiique.mixin.client",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "OnClientStartup",
+    "PlayerGuiMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "mixins": [
+    "PlayerWalkMixin"
+  ]
+}
